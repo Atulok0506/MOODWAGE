@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='user_reviews.css') }}">
+
+    <title>User Reviews</title>
+</head>
+<body>
+    <h1>User Reviews</h1>
+
+    <h2>Recent Reviews</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>User</th>
+                <th>Company Name</th>
+                <th>Comment</th>
+                <th>Sentiment Score</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for review in reviews %}
+                <tr>
+                    <td>{{ review[1] }}</td> <!-- User -->
+                    <td>{{ review[2] }}</td> <!-- Company Name -->
+                    <td>{{ review[3] }}</td> <!-- Comment -->
+                    <td>{{ review[4] }}</td> <!-- Sentiment Score -->
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

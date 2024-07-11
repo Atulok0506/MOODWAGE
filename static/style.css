@@ -1,0 +1,175 @@
+/* Overall Page Styling */
+body {
+    font-family: 'Raleway', sans-serif;
+    background: #74ebd5;
+    background: -webkit-linear-gradient(to bottom, #74ebd5, #acb6e5);
+    background: linear-gradient(to bottom, #de6262, #ffb88c);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+    position: relative;
+}
+
+/* Title Styling */
+h1 {
+    text-align: center;
+    width: 290px;
+    margin: 0 auto;
+    padding: 0 20px;
+    border: 2px solid black;
+    box-sizing: border-box;
+    border-radius: 8px;
+}
+
+/* Container Styling */
+.container {
+    background-image: url("https://media1.tenor.com/m/dc78ktzLyX0AAAAC/changing-colors.gif");
+    padding: 5px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Logo Styling */
+#logoContainer {
+    position: relative;
+    text-align: center;
+}
+
+#companyLogo {
+    max-width: 250px;
+    max-height: 200px;
+    margin-top: 20px;
+    border: 2px solid #333;
+    border-radius: 10px;
+}
+
+/* Highlighted Text Styling */
+#text-prompt strong {
+    font-weight: 'Raleway', sans-serif;
+    color: #FF6347 ;
+}
+
+/* Form Styling */
+form {
+    margin: 40px;
+    padding: 30px;
+    background-color: #BEC6C7;
+    border-radius: 16px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+
+/* Button Styling */
+input[type="submit"] {
+    background-color: skyblue;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 300ms;
+}
+
+input[type="submit"]:hover {
+    background-color: darken(skyblue, 10%);
+}
+
+/* Progress Bar Styling */
+.progress-bar {
+    height: 20px;
+    border-radius: 5px;
+    margin-top: 10px;
+    width: 0%;
+    animation: progress-animation 2s linear;
+}
+
+@keyframes progress-animation {
+    0% { width: 0%; }
+    100% { width: 100%; }
+}
+
+.progress-bar.red {
+    background-color: red;
+}
+
+.progress-bar.orange {
+    background-color: orange;
+}
+
+.progress-bar.yellow {
+    background-color: yellow;
+}
+
+.progress-bar.green {
+    background-color: green;
+}
+
+.progress-bar.blue {
+    background-color: blue;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 600px) {
+    form {
+        margin: 10px;
+        padding: 10px;
+    }
+
+    input[type="submit"] {
+        padding: 8px 16px;
+    }
+}
+
+/* Sidebar Styling */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -250px;
+    width: 250px;
+    height: 100vh;
+    background-color: linear-gradient(to bottom, #de6262, #ffb88c);
+    transition: left 0.3s ease;
+    z-index: 1000;
+}
+
+.sidebar-visible {
+    left: 0;
+}
+
+/* Hamburger Icon Styling */
+#hamburger-icon {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1100;
+    cursor: pointer;
+}
+
+#hamburger-icon img {
+    width: 40px;
+    height: 40px;
+}
+
+/* Sidebar Icons Styling */
+.sidebar-icons {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    width: 50%;
+    text-align: center;
+}
+
+.sidebar-icons a {
+    display: block;
+    margin-bottom: 20px;
+}
+
+.sidebar-icons .review-icon img,
+.sidebar-icons .login-icon img {
+    width: 50px;
+    height: 50px;
+}

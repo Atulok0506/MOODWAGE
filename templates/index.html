@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MOODWAGE</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <script>
+        var logosFolder = "{{ logos_folder }}";
+
+        // Function to get color based on sentiment prediction score
+        function get_sentiment_color(score) {
+            switch(score) {
+                case 1:
+                    return "red";
+                case 2:
+                    return "orange";
+                case 3:
+                    return "yellow";
+                case 4:
+                    return "green";
+                case 5:
+                    return "blue";
+                default:
+                    return "black"; // Default color for unknown score
+            }
+        }
+
+        $(document).ready(function () {
+            $("#hamburger-icon").click(function () {
+                $(".sidebar").toggleClass("sidebar-visible");
+            });
+
+            $("#company").change(function () {
+                var selectedCompany = $(this).val();
+                // Set the selected company as the default text in the sentiment analysis form
+                $("#text-prompt").text("What do you think of " + selectedCompany + "?");
+
+                $.ajax({
+                    type: 'POST',
+                    contentType: 'application/json;charset=UTF-8',
+                    data: JSON.stringify({ company_name: selectedCompany }),
+                    url: '/get_job_profiles',
+                    success: function (response) {
+                        var jobProfilesDropdown = $("#job_profile_dropdown");
+                        jobProfilesDropdown.empty();
+                        $.each(response.job_profiles, function (index, value) {
+                            jobProfilesDropdown.append($('<option>').text(value).attr('value', value));
+                        });
+
+                        fetchCompanyLogo(selectedCompany);
+                    },
+                    error: function (error) {
+                        console.log('Error fetching job profiles:', error);
+                    }
+                });
+            });
+
+            // Trigger the change event on document load
+            $("#company").change();
+        });
+
+        function fetchCompanyLogo(company) {
+            var logoPath = 'static/' + company.toLowerCase() + '.png';
+            $("#companyLogo").attr('src', logoPath).show();
+        }
+    </script>
+</head>
+<body>
+    <!-- Hamburger Icon -->
+    <div id="hamburger-icon">
+        <img src="{{ url_for('static', filename='icons8-hamburger.svg') }}" alt="Hamburger Icon">
+    </div>
+
+    <!-- Sidebar -->
+<div id="sidebar" class="sidebar">
+    <!-- Review Icon -->
+    <div class="sidebar-icons">
+        <a href="/user_reviews" class="review-icon"><img src="{{ url_for('static', filename='rating-4107.svg') }}" alt="Review Icon" width="50" height="50"></a>
+        <a href="/loginpage" class="register-icon"><img src="{{ url_for('static', filename='user-login-avatar-11929.svg') }}" alt="Register" width="50" height="50"></a>
+    </div>
+
+</div>
+
+
+    <div class="container">
+        <h1>MOODWAGE</h1>
+    </div>
+
+
+    <div id="logoContainer">
+        <img id="companyLogo" src="" alt="Company Logo" style="display: none;">
+    </div>
+
+    <form id="salaryForm" action="/predict_salary" method="post">
+        <label for="company">Company:</label>
+        <input type="text" name="company" id="company" value="{{ company }}">
+        <br>
+        <label for="job_profile_dropdown">Job Profile:</label>
+        <select name="job_profile" id="job_profile_dropdown">
+        </select>
+        <br>
+        <label for="experience_required">Experience:</label>
+        <input type="text" name="experience_required" id="experience_required" value="{{ experience_required }}">
+        <br>
+        <input type="submit" value="Predict Salary">
+
+        <div class="prediction-container">
+            {% if salary_prediction %}
+                <h2>Salary Prediction: {{ salary_prediction }}</h2>
+            {% endif %}
+        </div>
+    </form>
+
+    <form id="sentimentForm" action="/predict_sentiment" method="post">
+    <div>
+        <span id="text-prompt">What do you think of {{ company }}?</span>
+    </div>
+    <textarea name="text" id="text" rows="4" cols="50">{{ text }}</textarea>
+    <br>
+    <input type="submit" value="Predict Sentiment">
+    {% if sentiment_prediction %}
+
+        <!-- Add a progress bar to visually represent the sentiment prediction score -->
+        <div class="progress">
+            <div class="progress-bar" role="progressbar" style="width: {{ sentiment_prediction * 20 }}%; background-color: {{ get_sentiment_color(sentiment_prediction) }};" aria-valuenow="{{ sentiment_prediction }}" aria-valuemin="1" aria-valuemax="5"></div>
+        </div>
+    {% endif %}
+    </form>
+
+    <!-- Rest of your HTML content -->
+</body>
+</html>

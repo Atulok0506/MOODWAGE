@@ -1,0 +1,30 @@
+/* user_reviews.css */
+
+/* Apply background color to the entire page */
+body {
+    background: -webkit-linear-gradient(to bottom, #74ebd5, #acb6e5);
+    background: linear-gradient(to bottom, #de6262, #ffb88c);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* Style for table headers */
+th {
+    background-color: #f2f2f2;
+    padding: 8px;
+    text-align: left;
+}
+
+/* Style for table data */
+td {
+    border-bottom: 1px solid #ddd;
+    padding: 8px;
+}
+
+/* Alternate row color */
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
