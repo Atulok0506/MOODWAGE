@@ -1,6 +1,8 @@
 # MoodWage
 
 ![MoodWage](https://github.com/Atulok0506/MOODWAGE/blob/main/moodwage1.png)
+![MoodWage](https://github.com/Atulok0506/MOODWAGE/blob/main/moodwage2.png)
+
 
 ## Overview
 
