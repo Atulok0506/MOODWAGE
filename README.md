@@ -5,6 +5,13 @@
 ![MoodWage](https://github.com/Atulok0506/MOODWAGE/blob/main/moodwage1.png)
 
 
+![Programming Language](https://img.shields.io/badge/Python-3.10-orange)
+![Framework](https://img.shields.io/badge/Framework-Flask-red)
+![DATA](https://img.shields.io/badge/Ambitionbox-fcba03)
+![Deploy](https://img.shields.io/badge/AWS-fcba03)
+
+
+
 ## Overview
 
 Welcome to MoodWage, your ultimate tool for predicting salaries and analyzing company sentiment. This project integrates machine learning for salary predictions and natural language processing (NLP) for sentiment analysis, all accessible via Flask APIs.
